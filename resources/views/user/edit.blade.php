@@ -34,16 +34,29 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="status" class="col-md-4 control-label">Your Status</label>
+
+                            <div class="col-md-6">
+                                <input id="status" type="text" class="form-control" name="status" value="{{ $user->status }}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="" class="col-md-4 control-label">Profile picture</label>
 	                        <span class="btn btn-default btn-file">
-							    <input type="file" name="pic">
+							    <input type="file" name="profile">
 							</span>
 						</div>
+                        <div class="form-group">
+                            <label for="" class="col-md-4 control-label">Cover picture</label>
+                            <span class="btn btn-default btn-file">
+                                <input type="file" name="cover">
+                            </span>
+                        </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    Edit
                                 </button>
                             </div>
                         </div>

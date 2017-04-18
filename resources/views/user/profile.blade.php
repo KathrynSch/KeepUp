@@ -1,12 +1,23 @@
 @extends('layouts.app')
 
-@section('content')
-    @if(file_exists('images/pp/'.$user->id.'.'.$user->extension_pp))
-        <img src="{{ asset('images/pp/'.$user->id.'.'.$user->extension_pp) }}">
-    @else
-        <img src="{{ asset('images/pp/default.png') }}">
-    @endif
+@section('Content')
+<div>
+		<ul class="nav nav-tabs">
+		<li role="presentation" ><a href="{{ route('about',['id' => $user->id]) }}">About</a></li>
+	  	<li role="presentation" ><a href="{{ route('profilePhotos',['id' => $user->id]) }}">Photos</a></li>
+	  	<li role="presentation"><a href="{{ route('profileVideos',['id' => $user->id]) }}">Videos</a></li>
+	  	<li role="presentation"><a href="{{ route('profileEvents',['id' => $user->id]) }}">Events</a></li>
+	  	<!-- if user account profile-->
     @if(Auth::id() == $user->id)
-        <a href="{{route('edit',['id' => $user->id])}}">Edit profile</a>
+        <li role="presentation"><a href="{{ route('userMessages',['id' => $user->id]) }}">Messages</a></li>
     @endif
-@endsection
+	</ul>
+@yield('profileContent')
+</div>
+
+@show
+	
+
+
+
+

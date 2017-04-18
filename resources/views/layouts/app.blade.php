@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>KEEP UP</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -36,7 +36,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        KEEP UP
                     </a>
                 </div>
 
@@ -55,26 +55,24 @@
                         @else
                             <!-- Si user authentifié -->
                             <div class="btn-group" role="group" aria-label="...">
-                              <button type="button" class="btn btn-default">ACCUEIL</button>
-                              <a type="button" class="btn btn-default" href="{{ route('profile', ['id' => Auth::id()]) }}">PROFIL</a>
-                              <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
+                            <!-- BOUTON ACCUEIL -->
+                            <button type="button" class="btn btn-default">ACCUEIL</button>
+                            <!-- BOUTON PROFIL -->
+                            <a type="button" class="btn btn-default" href="{{ route('about', ['id' => Auth::id()]) }}">PROFIL</a>
+                            <!-- BOUTON LOGOUT -->
+                            <a type="button" class="btn btn-default" href=href="{{ route('logout') }}"
+                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                             </div>
                         @endif
                     </ul>
                 </div>
             </div>
         </nav>
-
-        @yield('content')
     </div>
+    @yield('content')
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

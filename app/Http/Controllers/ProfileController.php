@@ -8,7 +8,7 @@ class ProfileController extends Controller
 {
 	function show($id){
 		$user = User::find($id);
-		return view('user.profile', ["user" => $user]);
+		return view('user.about', ["user" => $user]);
 	}
 	function edit($id){
         $user = User::find($id);
@@ -16,9 +16,17 @@ class ProfileController extends Controller
 	}
 
 	function editSubmit(Request $request, $id){
-		if($request->file('pic') != null){
-			$user = User::find($id);
-        	$file = $request->file('pic');
+	$user = User::find($id);
+	// Edit first name
+	// Edit last name
+	// Edit email
+	// Edit status
+		if($request->input('status')!=null){
+			$user->status=$request->input('status');
+		}
+	// Edit profile pic
+		if($request->file('profile') != null){
+        	$file = $request->file('profile');
         	$file_name = $file->getClientOriginalName();
         	$extension = pathinfo($file_name, PATHINFO_EXTENSION);
 
@@ -29,10 +37,39 @@ class ProfileController extends Controller
         	$file->move('images/pp/', $user->id.'.'.$extension);
 
         	$user->extension_pp = $extension;
-        	$user->save();
-		}
+        }
+        	
+	// Edit cover pic
+        if($request->file('cover') != null){
+        	$file = $request->file('cover');
+        	$file_name = $file->getClientOriginalName();
+        	$extension = pathinfo($file_name, PATHINFO_EXTENSION);
 
-		return redirect()->route('profile',["id" => $user->id]);
+        	if(file_exists('images/cp/'.$user->id.'.'.$user->extension_cp)){
+        		unlink('images/cp/'.$user->id.'.'.$user->extension_cp);
+        	}
 
+        	$file->move('images/cp/', $user->id.'.'.$extension);
+
+        	$user->extension_cp = $extension;
+        }
+		
+	$user->save();
+	return redirect()->route('profile',["id" => $user->id]);
+
+   	}
+
+   	function photos($id){
+   		$user = User::find($id);
+   		return view('user.photos',["user"=>$user]);
+   	}
+   	function videos($id){
+   		echo $id;
+   	}
+   	function events($id){
+   		echo $id;
+   	}
+   	function messages($id){
+   		echo $id;
    	}
 }
