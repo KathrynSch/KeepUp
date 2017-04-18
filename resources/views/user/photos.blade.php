@@ -2,5 +2,4 @@
 
 @section('profileContent')
 	photo	
-@stop
-@include('user.profile')
+@endsection

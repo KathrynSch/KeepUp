@@ -23,6 +23,5 @@
     @if(Auth::id() == $user->id)
         <a href="{{route('edit',['id' => $user->id])}}">Edit profile</a>
     @endif
-@stop
+@endsection
 
-@include('user.profile')

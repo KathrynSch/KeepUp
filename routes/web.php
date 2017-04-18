@@ -20,6 +20,10 @@ Route::group(['prefix' => 'profile'], function () {	// groupe de routes commenca
     Route::get('videos/{id}', 'ProfileController@videos')->name('profileVideos');
     Route::get('events/{id}', 'ProfileController@events')->name('profileEvents');
     Route::get('messages/{id}', 'ProfileController@messages')->name('userMessages');
+    Route::get('photos/add/{id}', 'ProfileController@addPhoto')->name('addPhoto');
+    Route::get('videos/add/{id}', 'ProfileController@addVideo')->name('addVideo');
+    Route::get('event/add/{id}', 'ProfileController@addEvent')->name('addEvent');
 });
 
- Route::post('editSubmit/{id}','ProfileController@editSubmit')->name('postEdit'); // route pour validation edit de profil
+Route::post('editSubmit/{id}','ProfileController@editSubmit')->name('postEdit'); // route pour validation edit de profil
+Route::post('addPhotoSubmit/{id}','ProfileController@addPhotoSubmit')->name('postAddPhoto'); 

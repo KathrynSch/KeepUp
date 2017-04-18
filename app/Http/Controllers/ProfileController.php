@@ -11,7 +11,7 @@ class ProfileController extends Controller
 		return view('user.about', ["user" => $user]);
 	}
 	function edit($id){
-        $user = User::find($id);
+    $user = User::find($id);
 		return view('user.edit',["user" => $user]);
 	}
 
@@ -72,4 +72,9 @@ class ProfileController extends Controller
    	function messages($id){
    		echo $id;
    	}
+
+    function addPhoto($id){
+      $user = User::find($id);
+      return view('user.addPhoto',["user" => $user]);
+    }
 }
