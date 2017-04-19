@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Post;
+use App\User;      
+use App\Photo; 
 class ProfileController extends Controller
 {
 	function show($id){
@@ -61,7 +64,16 @@ class ProfileController extends Controller
 
    	function photos($id){
    		$user = User::find($id);
-   		return view('user.photos',["user"=>$user]);
+      //fetch photos
+      $photos= DB::table('photos')
+                ->select('photos.*')
+                ->join('posts','photos.id_post','=','posts.id')
+                ->where('posts.id_user',$id)
+                ->where('posts.type',1)
+                ->get();
+      //fetch commentaires
+      //fetch reactions
+   		return view('user.photos',["photos"=>$photos],["user"=>$user]);
    	}
    	function videos($id){
    		echo $id;
@@ -73,8 +85,4 @@ class ProfileController extends Controller
    		echo $id;
    	}
 
-    function addPhoto($id){
-      $user = User::find($id);
-      return view('user.addPhoto',["user" => $user]);
-    }
 }
