@@ -55,7 +55,7 @@ class ProfileController extends Controller
         }
 		
 	$user->save();
-	return redirect()->route('profile',["id" => $user->id]);
+	return redirect()->route('about',["id" => $user->id]);
 
    	}
 
