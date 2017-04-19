@@ -2,16 +2,13 @@
 
 @section('profileContent')
 
-	@foreach($photos as $photo)
+	@foreach($events as $event)
 
 			<div>
-				<img src="{{asset('images/photo/'.$photo->name) }}" width="100" height="100">
-				<div>
-					<h4>When: {{$photo->date}}</h4>
-					<h4>Where: {{$photo->lieu}}</h4>
-					<h4>What: {{$photo->description}}</h4>
-				</div>
-				<div>
+				<h3>When: {{$event->date}}</h3>
+				<h3>Where: {{$event->lieu}}</h3>
+				<h3>What: {{$event->description}}</h3>
+			<div>
 					<!--comments-->
 					
 					
@@ -23,7 +20,7 @@
 					@endforeach
 					<!--form/input text/submit-->
 					<div class="col-lg-6">
-					<form role="form" method="POST" action="{{route('postComment', ['id_post' => $photo->id_post])}}">
+					<form role="form" method="POST" action="{{route('postComment', ['id_post' => $event->id_post])}}">
 					{{ csrf_field() }}
 					    <div class="input-group">
 					      <input type="text" class="form-control" name="comment" placeholder="Comment...">

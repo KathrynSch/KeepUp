@@ -23,7 +23,11 @@ Route::group(['prefix' => 'profile'], function () {	// groupe de routes commenca
     Route::get('photos/add/{id}', 'PostController@addPhoto')->name('addPhoto');
     Route::get('videos/add/{id}', 'PostController@addVideo')->name('addVideo');
     Route::get('event/add/{id}', 'PostController@addEvent')->name('addEvent');
+
 });
 
 Route::post('editSubmit/{id}','ProfileController@editSubmit')->name('postEdit'); // route pour validation edit de profil
 Route::post('addPhotoSubmit/{id}','PostController@addPhotoSubmit')->name('postAddPhoto'); 
+Route::post('addVideoSubmit/{id}','PostController@addVideoSubmit')->name('postAddVideo');
+Route::post('addEventSubmit/{id}', 'PostController@addEventSubmit')->name('postAddEvent'); 
+Route::post('photos/comment/{id_post}', 'PostController@addComment')->name('postComment');

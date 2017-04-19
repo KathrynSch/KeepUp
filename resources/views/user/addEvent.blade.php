@@ -5,18 +5,20 @@
     	<div class="row">
         <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
-            <div class="panel-heading">Add a photo</div>
+            <div class="panel-heading">Create your event</div>
                 <div class="panel-body">
-                <form class="form-horizontal" role="form" method="POST" action="{{route('postAddPhoto', ['id' => $user->id])}}" enctype="multipart/form-data">
+                <form class="form-horizontal" role="form" method="POST" action="{{route('postAddEvent', ['id' => $user->id])}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         
-                        <!--Upload File-->
+                        <!--Name-->
                         <div class="form-group">
-                            <label for="" class="col-md-4 control-label">Choose photo</label>
-	                        <span class="btn btn-default btn-file">
-							    <input type="file" name="photo">
-							</span>
-						</div>
+                            <label for="name" class="col-md-4 control-label">Name</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="name" value="" required autofocus>
+                            </div>
+                        </div>
+
                         <!--Where-->
                         <div class="form-group">
                             <label for="where" class="col-md-4 control-label">Where</label>
@@ -38,7 +40,7 @@
                             <label for="what" class="col-md-4 control-label">What</label>
 
                             <div class="col-md-6">
-                                <input id="what" type="text" class="form-control" name="what" value="" required autofocus>
+                                <input id="what" type="textarea" rows="10" class="form-control" name="what" value="" required autofocus>
                             </div>
                         </div>
                         <!--SUBMIT-->

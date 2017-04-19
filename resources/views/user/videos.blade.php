@@ -2,14 +2,17 @@
 
 @section('profileContent')
 
-	@foreach($photos as $photo)
+	@foreach($videos as $video)
 
 			<div>
-				<img src="{{asset('images/photo/'.$photo->name) }}" width="100" height="100">
+				<video width="320" height="240" controls>
+  					<source src="{{asset('videos/'.$video->name) }}" >
+				</video>
+				
 				<div>
-					<h4>When: {{$photo->date}}</h4>
-					<h4>Where: {{$photo->lieu}}</h4>
-					<h4>What: {{$photo->description}}</h4>
+					<h4>When: {{$video->date}}</h4>
+					<h4>Where: {{$video->lieu}}</h4>
+					<h4>What: {{$video->description}}</h4>
 				</div>
 				<div>
 					<!--comments-->
@@ -23,7 +26,7 @@
 					@endforeach
 					<!--form/input text/submit-->
 					<div class="col-lg-6">
-					<form role="form" method="POST" action="{{route('postComment', ['id_post' => $photo->id_post])}}">
+					<form role="form" method="POST" action="{{route('postComment', ['id_post' => $video->id_post])}}">
 					{{ csrf_field() }}
 					    <div class="input-group">
 					      <input type="text" class="form-control" name="comment" placeholder="Comment...">

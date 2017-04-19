@@ -1,22 +1,22 @@
 @extends('user.profile')
 
 @section('profileContent')
-	<div class="container">
-    	<div class="row">
+    <div class="container">
+        <div class="row">
         <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading">Add a photo</div>
                 <div class="panel-body">
-                <form class="form-horizontal" role="form" method="POST" action="{{route('postAddPhoto', ['id' => $user->id])}}" enctype="multipart/form-data">
+                <form class="form-horizontal" role="form" method="POST" action="{{route('postAddVideo', ['id' => $user->id])}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        
+                        <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                         <!--Upload File-->
                         <div class="form-group">
-                            <label for="" class="col-md-4 control-label">Choose photo</label>
-	                        <span class="btn btn-default btn-file">
-							    <input type="file" name="photo">
-							</span>
-						</div>
+                            <label for="" class="col-md-4 control-label">Choose video</label>
+                            <span class="btn btn-default btn-file">
+                                <input type="file" name="video">
+                            </span>
+                        </div>
                         <!--Where-->
                         <div class="form-group">
                             <label for="where" class="col-md-4 control-label">Where</label>
@@ -54,5 +54,5 @@
             </div>
         </div>
     </div>
-</div>	
+</div>  
 @endsection
