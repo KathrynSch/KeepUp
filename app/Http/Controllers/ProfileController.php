@@ -6,7 +6,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;      
-use App\Photo; 
+use App\Photo;
+use App\Video;
+use App\Event;
+use App\Comment;
+use App\Reaction; 
 class ProfileController extends Controller
 {
 	function show($id){
@@ -67,10 +71,13 @@ class ProfileController extends Controller
       //fetch photos
       $photos= DB::table('photos')
                 ->select('photos.*')
+                ->orderBy('id','desc')
                 ->join('posts','photos.id_post','=','posts.id')
                 ->where('posts.id_user',$id)
                 ->where('posts.type',1)
                 ->get();
+      //dd($photos);
+      //dd($user);
       //fetch commentaires
       //fetch reactions
    		return view('user.photos',["photos"=>$photos],["user"=>$user]);

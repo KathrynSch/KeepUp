@@ -19,7 +19,7 @@ class CreatePhotosTable extends Migration
             $table->string('name');
             $table->string('lieu');
             $table->text('description');
-            $table->date('date');->nullable();
+            $table->date('date')->nullable();
             $table->timestamps();
         });
     }

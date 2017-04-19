@@ -1,10 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use App\Post;
 use App\User;      
-use App\Photo; 
+use App\Photo;
+use App\Video;
+use App\Event;
+use App\Comment;
+use App\Reaction;     
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -48,7 +53,7 @@ class PostController extends Controller
             
             $photo->save();
 
-            return view('user.photos',["user"=>$user]);
+            return redirect()->route('profilePhotos', ['id' => $id]);
         }
     }
 }
