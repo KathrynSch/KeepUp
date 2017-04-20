@@ -1,11 +1,11 @@
 @extends('user.profile')
 
 @section('profileContent')
-	<div class="container">
+	<!-- <div class="container">
     	<div class="row">
         <div class="col-md-8 col-md-offset-2">
-        <div class="panel panel-default">
-            <div class="panel-heading">Create your event</div>
+        <div class="panel panel-default"> -->
+            <div class="editprofile">Create your event</div>
                 <div class="panel-body">
                 <form class="form-horizontal" role="form" method="POST" action="{{route('postAddEvent', ['id' => $user->id])}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
@@ -46,7 +46,7 @@
                         <!--SUBMIT-->
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="bttneditprofile">
                                     Publish
                                 </button>
                             </div>
