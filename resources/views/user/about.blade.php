@@ -3,7 +3,6 @@
 @section('profileContent')
 
     <div class="container1">
-    
         @if($typeProfile==2)
             <!--Display Button UnFollow -->
                

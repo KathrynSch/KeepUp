@@ -16,6 +16,7 @@
 	                        <span class="btn btn-default btn-file">
 							    <input type="file" name="photo">
 							</span>
+                            
 						</div>
                         <!--Where-->
                         <div class="form-group">
