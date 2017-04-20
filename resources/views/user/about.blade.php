@@ -3,10 +3,23 @@
 @section('profileContent')
 
     <div class="container1">
+    
+        @if($typeProfile==2)
+            <!--Display Button UnFollow -->
+               
+            <a href="{{route('unfollow',['id' => $user->id])}}">Unfollow </a>
+         @endif
+         @if($typeProfile==3)
+            <!--Display Button UnFollow -->
+               
+            <a href="{{route('follow',['id' => $user->id])}}">Follow </a>
+         @endif
+
 
         <div class="item">
         <!--Display Name -->
         	<h1>{{$user->first_name}} {{$user->last_name}}</h1>
+            
         <!--Display Email -->
         	<h3>{{$user->email}}</h3>
         <!--Display Status -->

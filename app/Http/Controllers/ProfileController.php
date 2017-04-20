@@ -12,12 +12,44 @@ use App\Video;
 use App\Event;
 use App\Comment;
 use App\Reaction; 
+use App\Follow;
+
+
 class ProfileController extends Controller
 {
 	function show($id){
+    //user correspond au profil que j'affiche
 		$user = User::find($id);
-		return view('user.about', ["user" => $user]);
+
+    //Check if id est celui auth
+    if($id==Auth::id())
+    {
+        $typeProfile=1;
+    }
+
+    $request=count(DB::table('follows')
+                ->select('follows.*')
+                ->where('follows.id_user',Auth::id())
+                ->where('follows.id_friend',$id)
+                ->get());
+
+    //Si user deja amis avec le profil
+    if($request)
+    {
+        $typeProfile=2;
+
+    }
+
+    else
+    {
+      $typeProfile=3;
+    }
+
+
+		return view('user.about', ["user" => $user])->with('typeProfile',$typeProfile);
 	}
+
+
 	function edit($id){
     $user = User::find($id);
 		return view('user.edit',["user" => $user]);
@@ -311,5 +343,26 @@ class ProfileController extends Controller
 
         return view('user.events',["events"=>$events],["user"=>$user])->with(compact('allComments','allReactions','userReactions'));
     }
+
+  function follow($id)
+  {
+    $follow=new Follow();
+    $follow->id_user=Auth::id();
+    $follow->id_friend=$id;
+    $follow->save();
+
+    return redirect()->back();
+  }
+
+  function unfollow($id)
+  {
+    $follow=DB::table('follows')
+            ->select('follows.*')
+            ->where('follows.id_user',Auth::id())
+            ->where('follows.id_friend',$id)
+            ->delete();
+
+    return redirect()->back();
+  }
 }
 
