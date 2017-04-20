@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
     //ajouter une photo
     function addPhoto($id)
     {

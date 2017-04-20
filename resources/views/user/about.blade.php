@@ -30,6 +30,7 @@
                
             <a href="{{route('unfollow',['id' => $user->id])}}">Unfollow </a>
          @endif
+         
          @if($typeProfile==3)
             <!--Display Button UnFollow -->
                
