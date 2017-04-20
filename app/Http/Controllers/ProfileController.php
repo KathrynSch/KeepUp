@@ -76,20 +76,89 @@ class ProfileController extends Controller
                 ->where('posts.id_user',$id)
                 ->where('posts.type',1)
                 ->get();
-      //dd($photos);
-      //dd($user);
       //fetch commentaires
+      $allComments=array();
+      foreach ($photos as $photo){
+        $comments= DB::table('comments')
+                  ->select('comments.*','users.first_name','users.last_name')
+                  ->join('posts','comments.id_post','=','posts.id')
+                  ->join('users','comments.id_user','=','users.id')
+                  ->where('posts.id',$photo->id_post)
+                  ->get();  
+        array_push($allComments,$comments);
+      }
+
+      $allComments=array_reverse($allComments);
+
       //fetch reactions
-   		return view('user.photos',["photos"=>$photos],["user"=>$user]);
+
+   		return view('user.photos',["photos"=>$photos],["user"=>$user])->with('allComments',$allComments);
    	}
+
+
    	function videos($id){
-   		echo $id;
+      $user = User::find($id);
+
+      //fetch videos
+      $videos= DB::table('videos')
+                ->select('videos.*')
+                ->orderBy('id','desc')
+                ->join('posts','videos.id_post','=','posts.id')
+                ->where('posts.id_user',$id)
+                ->where('posts.type',2)
+                ->get();
+
+      //fetch commentaires
+      $allComments=array();
+      foreach ($videos as $video){
+        $comments= DB::table('comments')
+                  ->select('comments.*','users.first_name','users.last_name')
+                  ->join('posts','comments.id_post','=','posts.id')
+                  ->join('users','comments.id_user','=','users.id')
+                  ->where('posts.id',$video->id_post)
+                  ->get();  
+        array_push($allComments,$comments);
+      }
+      $allComments=array_reverse($allComments);
+
+      //fetch reactions
+
+      return view('user.videos',["videos"=>$videos],["user"=>$user])->with('allComments',$allComments);
    	}
-   	function events($id){
-   		echo $id;
-   	}
+
    	function messages($id){
    		echo $id;
    	}
+}
 
+//Display user events
+function events($id){
+      $user = User::find($id);
+      //fetch events
+      $events= DB::table('events')
+                ->select('events.*')
+                ->orderBy('id','desc')
+                ->join('posts','events.id_post','=','posts.id')
+                ->where('posts.id_user',$id)
+                ->where('posts.type',3)
+                ->get();
+
+                dd($events);
+      //fetch commentaires
+      $allComments=array();
+      foreach ($events as $event){
+        $comments= DB::table('comments')
+                  ->select('comments.*','users.first_name','users.last_name')
+                  ->join('posts','comments.id_post','=','posts.id')
+                  ->join('users','comments.id_user','=','users.id')
+                  ->where('posts.id',$event->id_post)
+                  ->get();  
+        array_push($allComments,$comments);
+      }
+
+      $allComments=array_reverse($allComments);
+
+      //fetch reactions
+
+      return view('user.events',["events"=>$events],["user"=>$user])->with('allComments',$allComments);
 }
