@@ -22,27 +22,29 @@ class ProfileController extends Controller
 		$user = User::find($id);
 
     //Check if id est celui auth
+    $id=intval($id);
     if($id==Auth::id())
     {
         $typeProfile=1;
     }
-
-    $request=count(DB::table('follows')
+    else{
+      $request=count(DB::table('follows')
                 ->select('follows.*')
                 ->where('follows.id_user',Auth::id())
                 ->where('follows.id_friend',$id)
                 ->get());
 
     //Si user deja amis avec le profil
-    if($request)
-    {
-        $typeProfile=2;
+      if($request)
+      {
+          $typeProfile=2;
 
-    }
+      }
 
-    else
-    {
-      $typeProfile=3;
+      else
+      {
+        $typeProfile=3;
+      }
     }
 
 

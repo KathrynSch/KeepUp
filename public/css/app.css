@@ -171,9 +171,7 @@ font-size: 14px;
 
 .coverpicture{
 	height: auto;
-    width: 100%;
-    margin-left: 283px;
-    
+    width: 100%;    
 }
 
 
@@ -206,7 +204,11 @@ font-size: 14px;
 }
 
 	
-
+.about{
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
 
 
 .item{
@@ -220,11 +222,13 @@ font-size: 14px;
 .containerprofile{
 	display: flex;
 	flex-direction:row;
+	margin-top: 10px;
 
 }
 
 .info{
 	margin-left: 10px;
+
 }
 
 
