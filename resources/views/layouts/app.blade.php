@@ -76,13 +76,13 @@
 
                            
                             <!-- BOUTON ACCUEIL -->
-                            <li><a href="{{ route('login') }}">ACCUEIL</a></li>
+                            <li><a href="{{ route('login') }}">HOME</a></li>
                            <!--  <button type="button" class="btn btn-default">ACCUEIL</button> -->
                             <!-- BOUTON PROFIL -->
-                            <li><a href="{{ route('about', ['id' => Auth::id()])}}">PROFIL</a></li>
+                            <li><a href="{{ route('about', ['id' => Auth::id()])}}">PROFILE</a></li>
                            <!--  <a type="button" class="btn btn-default" href="{{ route('about', ['id' => Auth::id()]) }}">PROFIL</a> -->
                             <!-- BOUTON LOGOUT -->
-                            <li><a href="">AMIS</a></li>
+                            <li><a href="">FRIENDS</a></li>
                             <!-- </div> --> 
                         </ul>
 

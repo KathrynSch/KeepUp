@@ -10,7 +10,8 @@ use App\Photo;
 use App\Video;
 use App\Event;
 use App\Comment;
-use App\Reaction;     
+use App\Reaction;  
+use App\Follow;     
 use Illuminate\Http\Request;
 
 class PostController extends Controller

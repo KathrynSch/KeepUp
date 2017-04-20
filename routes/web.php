@@ -24,11 +24,17 @@ Route::group(['prefix' => 'profile'], function () {	// groupe de routes commenca
     Route::get('photos/add/{id}', 'PostController@addPhoto')->name('addPhoto');
     Route::get('videos/add/{id}', 'PostController@addVideo')->name('addVideo');
     Route::get('event/add/{id}', 'PostController@addEvent')->name('addEvent');
+
+    Route::get('unfollow/{id}','ProfileController@unfollow')->name('unfollow');
+    Route::get('follow/{id}','ProfileController@follow')->name('follow');
+
     //reactions
     Route::get('likes/{id}', 'PostController@likes')->name('likes');	//envoie id post
     Route::get('loves/{id}', 'PostController@loves')->name('loves');
     Route::get('laughs/{id}', 'PostController@laughs')->name('laughs');
     Route::get('hates/{id}', 'PostController@hates')->name('hates');
+
+
 
 
 
