@@ -24,19 +24,19 @@ class ProfileController extends Controller
 	}
 
 	function editSubmit(Request $request, $id){
-	$user = User::find($id);
-	// Edit first name
-  if($request->input('first_name')!=null){
-    $user->name=$request->input('first_name');
-  }
-	// Edit last name
-  if($request->input('last_name')!=null){
-    $user->name=$request->input('last_name');
-  }
-	// Edit email
-  if($request->input('email')!=null){
-    $user->name=$request->input('email');
-  }
+  	$user = User::find($id);
+  	// Edit first name
+    if($request->input('first_name')!=null){
+      $user->name=$request->input('first_name');
+    }
+  	// Edit last name
+    if($request->input('last_name')!=null){
+      $user->name=$request->input('last_name');
+    }
+  	// Edit email
+    if($request->input('email')!=null){
+      $user->name=$request->input('email');
+    } 
 	// Edit status
 		if($request->input('status')!=null){
 			$user->status=$request->input('status');
@@ -74,11 +74,13 @@ class ProfileController extends Controller
 	$user->save();
 	return redirect()->route('about',["id" => $user->id]);
 
-   	}
+    }
 
  	function photos($id){
  		$user = User::find($id);
-    $auth_id=Auth::id();
+    $auth_id=Auth::id();                //auth user for reactions
+
+
     //fetch photos
     $photos= DB::table('photos')
               ->select('photos.*')
@@ -87,12 +89,14 @@ class ProfileController extends Controller
               ->where('posts.id_user',$id)
               ->where('posts.type',1)
               ->get();
-    //fetch commentaires
+    
     $allComments=array();
     $allReactions=array();
     $userReactions=array();
 
     foreach ($photos as $photo){
+
+      //fetch commentaires
       $comments= DB::table('comments')
                 ->select('comments.*','users.first_name','users.last_name')
                 ->join('posts','comments.id_post','=','posts.id')
@@ -100,6 +104,8 @@ class ProfileController extends Controller
                 ->where('posts.id',$photo->id_post)
                 ->get();  
       array_push($allComments,$comments);
+
+
       //fetch reactions
     $countLikes=count(DB::table('reactions')
                 ->select('reactions.*')
@@ -140,18 +146,15 @@ class ProfileController extends Controller
     $allReactions=array_reverse($allReactions);
     $userReactions=array_reverse($userReactions);
 
-   // dd($allReactions);
-
-
-
-
 
     return view('user.photos',["photos"=>$photos],["user"=>$user])->with(compact('allComments','allReactions','userReactions'));
  	}
 
 
  	function videos($id){
+
     $user = User::find($id);
+    $auth_id=Auth::id();                //auth user for reactions
 
     //fetch videos
     $videos= DB::table('videos')
@@ -162,9 +165,16 @@ class ProfileController extends Controller
               ->where('posts.type',2)
               ->get();
 
-    //fetch commentaires
+   
     $allComments=array();
+    $allReactions=array();
+    $userReactions=array();
+
+
+
     foreach ($videos as $video){
+
+      //fetch commentaires
       $comments= DB::table('comments')
                 ->select('comments.*','users.first_name','users.last_name')
                 ->join('posts','comments.id_post','=','posts.id')
@@ -172,48 +182,134 @@ class ProfileController extends Controller
                 ->where('posts.id',$video->id_post)
                 ->get();  
       array_push($allComments,$comments);
+    
+    
+     //fetch reactions
+    $countLikes=count(DB::table('reactions')
+                ->select('reactions.*')
+                ->where('reactions.id_post',$video->id_post)
+                ->where('reactions.type',1)
+                ->get());
+
+    $countLoves=count(DB::table('reactions')
+                ->select('reactions.*')
+                ->where('reactions.id_post',$video->id_post)
+                ->where('reactions.type',2)
+                ->get());
+    $countLaughs=count(DB::table('reactions')
+                ->select('reactions.*')
+                ->where('reactions.id_post',$video->id_post)
+                ->where('reactions.type',3)
+                ->get());
+
+    $countHates=count(DB::table('reactions')
+                ->select('reactions.*')
+                ->where('reactions.id_post',$video->id_post)
+                ->where('reactions.type',4)
+                ->get());
+
+    $counts=array($countLikes,$countLoves,$countLaughs,$countHates);
+    array_push($allReactions, $counts);
+
+    //fetch authenticated user reactions
+    $hasReacted=DB::table('reactions')
+              ->select('reactions.type')
+              ->where('reactions.id_post',$video->id_post)
+              ->where('reactions.id_user',$auth_id)
+              ->get();
+      array_push($userReactions, $hasReacted);
     }
+
     $allComments=array_reverse($allComments);
+    $allReactions=array_reverse($allReactions);
+    $userReactions=array_reverse($userReactions);
 
-    //fetch reactions
 
-    return view('user.videos',["videos"=>$videos],["user"=>$user])->with('allComments',$allComments);
- 	}
-
- 	function messages($id){
- 		echo $id;
+    return view('user.videos',["videos"=>$videos],["user"=>$user])->with(compact('allComments','allReactions','userReactions'));
  	}
 
 
-//Display user events
-function events($id){
-      $user = User::find($id);
-      //fetch events
-      $events= DB::table('events')
-                ->select('events.*')
-                ->orderBy('id','desc')
-                ->join('posts','events.id_post','=','posts.id')
-                ->where('posts.id_user',$id)
-                ->where('posts.type',3)
-                ->get();
+ 	
 
 
-      //fetch commentaires
+    //Display user events
+  function events($id){
+        $user = User::find($id);
+        $auth_id=Auth::id();                //auth user for reactions
+
+
+        //fetch events
+        $events= DB::table('events')
+                  ->select('events.*')
+                  ->orderBy('id','desc')
+                  ->join('posts','events.id_post','=','posts.id')
+                  ->where('posts.id_user',$id)
+                  ->where('posts.type',3)
+                  ->get();
+
       $allComments=array();
-      foreach ($events as $event){
-        $comments= DB::table('comments')
-                  ->select('comments.*','users.first_name','users.last_name')
-                  ->join('posts','comments.id_post','=','posts.id')
-                  ->join('users','comments.id_user','=','users.id')
-                  ->where('posts.id',$event->id_post)
-                  ->get();  
-        array_push($allComments,$comments);
-      }
+      $allReactions=array();
+      $userReactions=array();
+        
+    
+        foreach ($events as $event){
+          //fetch commentaires
+          $comments= DB::table('comments')
+                    ->select('comments.*','users.first_name','users.last_name')
+                    ->join('posts','comments.id_post','=','posts.id')
+                    ->join('users','comments.id_user','=','users.id')
+                    ->where('posts.id',$event->id_post)
+                    ->get();  
+          array_push($allComments,$comments);
+        
+        //fetch reactions
+        $countLikes=count(DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_post',$event->id_post)
+                    ->where('reactions.type',1)
+                    ->get());
 
-      $allComments=array_reverse($allComments);
+        $countLoves=count(DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_post',$event->id_post)
+                    ->where('reactions.type',2)
+                    ->get());
+        $countLaughs=count(DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_post',$event->id_post)
+                    ->where('reactions.type',3)
+                    ->get());
 
-      //fetch reactions
+        $countHates=count(DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_post',$event->id_post)
+                    ->where('reactions.type',4)
+                    ->get());
 
-      return view('user.events',["events"=>$events],["user"=>$user])->with('allComments',$allComments);
-  }
+        $counts=array($countLikes,$countLoves,$countLaughs,$countHates);
+        array_push($allReactions, $counts);
+
+        //fetch authenticated user reactions
+        $hasReacted=DB::table('reactions')
+                  ->select('reactions.type')
+                  ->where('reactions.id_post',$event->id_post)
+                  ->where('reactions.id_user',$auth_id)
+                  ->get();
+          array_push($userReactions, $hasReacted);
+        }
+
+        $allComments=array_reverse($allComments);
+        $allReactions=array_reverse($allReactions);
+        $userReactions=array_reverse($userReactions);
+
+
+
+
+
+
+
+
+        return view('user.events',["events"=>$events],["user"=>$user])->with(compact('allComments','allReactions','userReactions'));
+    }
 }
+
