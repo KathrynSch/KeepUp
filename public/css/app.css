@@ -17,7 +17,10 @@
 .row{
 
 	background-color:  #57BC90;
+	
 }
+
+
 .navbar-header{
 font-family: 'Rock Salt', cursive;
 
@@ -26,16 +29,17 @@ font-family: 'Rock Salt', cursive;
 .panel {
     border-color:  #57BC90;
     color: white;
-    background-color: #57BC90;
     height: 450px;
-    width: 800px;  
+    width: 800px; 
+    background-image: url(home.png);
+    
 }
 
 }
 
 .panel-body{
 	text-align: center;
-	background-color: #57BC90;
+	/*background-color: #57BC90;*/
 	color: white;
 	padding-bottom: 100px;}
 
@@ -91,17 +95,109 @@ h1{
 font-size: 20px;}
 
 h3{
-	font-size: 14px;
+font-size: 14px;
 }
 
 
 
-/*nav bar*/ 
+/*Edit Profile Page */
 
-nav.navbar-nav.navbar-left{
+.editprofile{
 
+	font-size: 40px;
+	text-align: center;
+
+}
+
+.bttneditprofile{
+	background-color: transparent; 
+	border-radius: 8px;
+	color: #57BC90;
+	border: 2px solid #57BC90;
+	 padding: 8px 16px;
 
 }
 
 
+.bttneditprofile:hover{
+	background-color: #57BC90 ; 
+	border-radius: 8px;
+	color: white;
+	border-color: transparent;
+	 padding: 8px 16px;
+
+}
+
+
+/* PROFILE - ABOUT */
+
+/* Resize profile and cover pictures: */
+
+.ppicture{
+	padding: 10px;
+	height: 200px;
+	width: auto;  
+    padding-right: 0px;
+ 
+}
+
+.coverpicture{
+	max-height: 200px;
+    width: 100%;
+    margin-left: 300px;
+    
+}
+
+
+
+.container1{
+	/*width: 700px;*/
+	display: flex;	
+	flex-direction:row;
+	justify-content: center;
+	padding: 0;
+	align-items: center;
+
+	
+
+}
+
+.container2{
+	width: 700px;
+	display: flex;
+	justify-content: center;
+}
+
+	
+
+
+
+.item{
+	margin: 0;
+	padding: 0;
+}
+
+
+/* petite photo de profile (in Profile) */
+
+.containerprofile{
+	display: flex;
+	flex-direction:row;
+
+}
+
+.info{
+	margin-left: 10px;
+}
+
+
+
+
+
+/* Button edit profile at the bottom */
+/*.edit {
+
+
+}
+*/
 

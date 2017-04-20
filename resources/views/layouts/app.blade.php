@@ -13,6 +13,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet">
+
 
     <!-- Scripts -->
     <script>
@@ -21,7 +23,7 @@
         ]) !!};
     </script>
 </head>
-<body>
+ <body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -36,39 +38,57 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        KEEP UP
-                    </a>
+                    <a class="navbar-brand" href="{{ url('/') }}">KEEP UP</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
+                   <!--  <ul class="nav navbar-nav">
                         &nbsp;
-                    </ul>
+                    </ul> -->
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <!-- <ul class="nav navbar-nav navbar-right"> -->
+                      <ul class="nav navbar-nav navbar-right">
+
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
+                        </ul>
                         @else
+                            
+
+                            <ul class="nav navbar-nav .navbar-toggler-left">
+
                             <!-- Si user authentifié -->
-                            <div class="btn-group" role="group" aria-label="...">
+                            <!-- <div class="btn-group" role="group" aria-label="..."> -->
                             <!-- BOUTON ACCUEIL -->
-                            <button type="button" class="btn btn-default">ACCUEIL</button>
+                            <li><a href="{{ route('login') }}">ACCUEIL</a></li>
+                           <!--  <button type="button" class="btn btn-default">ACCUEIL</button> -->
                             <!-- BOUTON PROFIL -->
-                            <a type="button" class="btn btn-default" href="{{ route('about', ['id' => Auth::id()]) }}">PROFIL</a>
+                            <li><a href="{{ route('about', ['id' => Auth::id()])}}">PROFIL</a></li>
+                           <!--  <a type="button" class="btn btn-default" href="{{ route('about', ['id' => Auth::id()]) }}">PROFIL</a> -->
                             <!-- BOUTON LOGOUT -->
-                            <a type="button" class="btn btn-default" href=href="{{ route('logout') }}"
-                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                            <li><a href="">AMIS</a></li>
+                            <!-- </div> --> 
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                              <li><a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">LOG OUT</a></li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
-                            </div>
+                        <!--  <a  class="btn btn-default" href=href="{{ route('logout') }}"
+                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                               </ul> -->
+
                         @endif
-                    </ul>
+                   
+
+
+                 
                 </div>
             </div>
         </nav>

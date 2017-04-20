@@ -1,13 +1,25 @@
 @extends('layouts.app')
 @section('content')
-<!--Display Name -->
-	<h1>{{$user->first_name}} {{$user->last_name}}</h1>
-<!--Display profile picture -->
-@if(file_exists('images/pp/'.$user->id.'.'.$user->extension_pp))
-        <img src="{{ asset('images/pp/'.$user->id.'.'.$user->extension_pp) }}" class="img-rounded" height="30" width="30px">
-    @else
-        <img src="{{ asset('images/pp/default.png') }}" class="img-rounded" height="30" width="30px">
-    @endif
+
+
+	<div class="containerprofile"> 
+		
+		<div class="info">
+			<!--Display profile picture -->
+			@if(file_exists('images/pp/'.$user->id.'.'.$user->extension_pp))
+			        <img src="{{ asset('images/pp/'.$user->id.'.'.$user->extension_pp) }}" class="img-rounded" height="70" width="auto">
+			    @else
+			        <img src="{{ asset('images/pp/default.png') }}" class="img-rounded" height="30" width="30px">
+			    @endif
+		</div>
+
+		<div class="info">
+			<!--Display Name -->
+				<h1>{{$user->first_name}} {{$user->last_name}}</h1>
+		</div>
+
+		
+	</div> 
 <div>
 		<ul class="nav nav-tabs">
 		<li role="presentation" ><a href="{{ route('about',['id' => $user->id]) }}">About</a></li>
