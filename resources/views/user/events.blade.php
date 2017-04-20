@@ -5,6 +5,7 @@
 	@foreach($events as $event)
 
 			<div>
+				<h2>{{$event->name}}</h2>
 				<h3>When: {{$event->date}}</h3>
 				<h3>Where: {{$event->lieu}}</h3>
 				<h3>What: {{$event->description}}</h3>
@@ -33,7 +34,21 @@
 
 				</div>
 				<div>
-					<!--reactions-->
+				<!--reactions-->
+					<table style="width:15%">
+				  <tr>
+				    <th width="10"><a href="{{ route('likes',['id' => $event->id_post]) }}">Like</a></th>
+				    <th><a href="{{ route('loves',['id' => $event->id_post]) }}">Love</a></th> 
+				    <th><a href="{{ route('laughs',['id' => $event->id_post]) }}">Laugh</a></th>
+				    <th><a href="{{ route('hates',['id' => $event->id_post]) }}">Hate</a></th>
+				  </tr>
+				  <tr>
+						<!--Reactions count-->
+					    @foreach($table=array_pop($allReactions) as $reaction)
+					    		<th width="10">{{($reaction)}}</th>   
+					    @endforeach
+					</tr>
+					</table>
 				</div>
 			</div>
 		

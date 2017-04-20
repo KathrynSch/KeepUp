@@ -155,5 +155,235 @@ class PostController extends Controller
 
         return redirect()->back();
     }
+
+
+
+//// REACTIONS
+
+//likes
+
+    function likes($id_post){    //id du post réagit
+        $user=User::find(Auth::id());
+
+         //verifie si autre reaction
+        $isReacted=count(DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_user',$user->id)
+                    ->where('reactions.id_post',$id_post)
+                    ->get());
+            //si aucune reaction ailleurs --> on peut liker
+        if($isReacted==0)
+        {
+            $like=new Reaction();
+            $like->id_post=$id_post;
+            $like->id_user=$user->id;
+            $like->type=1;
+
+            $like->save();
+        }
+            // si reaction ailleurs --> on regarde si c'est un like
+        else{
+            $isLiked=count(DB::table('reactions')
+            ->select('reactions.*')
+            ->where('reactions.id_user',$user->id)
+            ->where('reactions.id_post',$id_post)
+            ->where('reactions.type',1)
+            ->get());
+                // si c'est un like --> on unlike
+            if($isLiked==1){
+                $unLike=DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_user',$user->id)
+                    ->where('reactions.id_post',$id_post)
+                    ->where('reactions.type',1)
+                    ->delete();
+            }
+                // sinon = autre reac --> on delete et on like
+            else{
+                $unReact=DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_user',$user->id)
+                    ->where('reactions.id_post',$id_post)
+                    ->delete();
+                $like=new Reaction();
+                    $like->id_post=$id_post;
+                    $like->id_user=$user->id;
+                    $like->type=1;
+                    $isReacted=1;
+
+                    $like->save();
+            }
+        }
+
+        return redirect()->back();
+    }
+
+//loves
+function loves($id_post){    //id du post réagit
+        $user=User::find(Auth::id());
+
+         //verifie si autre reaction
+        $isReacted=count(DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_user',$user->id)
+                    ->where('reactions.id_post',$id_post)
+                    ->get());
+            //si aucune reaction ailleurs --> on peut love
+        if($isReacted==0)
+        {
+            $love=new Reaction();
+            $love->id_post=$id_post;
+            $love->id_user=$user->id;
+            $love->type=2;
+
+            $love->save();
+        }
+            // si reaction ailleurs --> on regarde si c'est un love
+        else{
+            $isLoved=count(DB::table('reactions')
+            ->select('reactions.*')
+            ->where('reactions.id_user',$user->id)
+            ->where('reactions.id_post',$id_post)
+            ->where('reactions.type',2)
+            ->get());
+                // si c'est un love --> on unlove
+            if($isLoved==1){
+                $unLove=DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_user',$user->id)
+                    ->where('reactions.id_post',$id_post)
+                    ->where('reactions.type',2)
+                    ->delete();
+            }
+                // sinon = autre reac --> on delete et on love
+            else{
+                $unReact=DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_user',$user->id)
+                    ->where('reactions.id_post',$id_post)
+                    ->delete();
+                $love=new Reaction();
+                    $love->id_post=$id_post;
+                    $love->id_user=$user->id;
+                    $love->type=2;
+
+                    $love->save();
+            }
+        }
+
+        return redirect()->back();
+    }
+
+//laughs
+function laughs($id_post){    //id du post réagit
+        $user=User::find(Auth::id());
+
+         //verifie si autre reaction
+        $isReacted=count(DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_user',$user->id)
+                    ->where('reactions.id_post',$id_post)
+                    ->get());
+            //si aucune reaction ailleurs --> on peut laugh
+        if($isReacted==0)
+        {
+            $laugh=new Reaction();
+            $laugh->id_post=$id_post;
+            $laugh->id_user=$user->id;
+            $laugh->type=3;
+
+            $laugh->save();
+        }
+            // si reaction ailleurs --> on regarde si c'est un laugh
+        else{
+            $isLaughed=count(DB::table('reactions')
+            ->select('reactions.*')
+            ->where('reactions.id_user',$user->id)
+            ->where('reactions.id_post',$id_post)
+            ->where('reactions.type',3)
+            ->get());
+                // si c'est un laugh --> on unlaugh
+            if($isLaughed==1){
+                $unlaugh=DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_user',$user->id)
+                    ->where('reactions.id_post',$id_post)
+                    ->where('reactions.type',3)
+                    ->delete();
+            }
+                // sinon = autre reac --> on delete et on laugh
+            else{
+                $unReact=DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_user',$user->id)
+                    ->where('reactions.id_post',$id_post)
+                    ->delete();
+                $laugh=new Reaction();
+                    $laugh->id_post=$id_post;
+                    $laugh->id_user=$user->id;
+                    $laugh->type=3;
+
+                    $laugh->save();
+            }
+        }
+
+        return redirect()->back();
+    }
+
+
+//hates
+function hates($id_post){    //id du post réagit
+$user=User::find(Auth::id());
+
+         //verifie si autre reaction
+        $isReacted=count(DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_user',$user->id)
+                    ->where('reactions.id_post',$id_post)
+                    ->get());
+            //si aucune reaction ailleurs --> on peut hate
+        if($isReacted==0)
+        {
+            $hate=new Reaction();
+            $hate->id_post=$id_post;
+            $hate->id_user=$user->id;
+            $hate->type=4;
+
+            $hate->save();
+        }
+            // si reaction ailleurs --> on regarde si c'est un hate
+        else{
+            $isHated=count(DB::table('reactions')
+            ->select('reactions.*')
+            ->where('reactions.id_user',$user->id)
+            ->where('reactions.id_post',$id_post)
+            ->where('reactions.type',4)
+            ->get());
+                // si c'est un hate --> on unhate
+            if($isHated==1){
+                $unHate=DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_user',$user->id)
+                    ->where('reactions.id_post',$id_post)
+                    ->where('reactions.type',4)
+                    ->delete();
+            }
+                // sinon = autre reac --> on delete et on hate
+            else{
+                $unReact=DB::table('reactions')
+                    ->select('reactions.*')
+                    ->where('reactions.id_user',$user->id)
+                    ->where('reactions.id_post',$id_post)
+                    ->delete();
+                $hate=new Reaction();
+                    $hate->id_post=$id_post;
+                    $hate->id_user=$user->id;
+                    $hate->type=4;
+
+                    $hate->save();
+            }
+        }
+
+        return redirect()->back();
+    }
 }
- 

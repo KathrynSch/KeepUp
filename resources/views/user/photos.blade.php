@@ -37,6 +37,21 @@
 				</div>
 				<div>
 					<!--reactions-->
+					<table style="width:15%">
+				  <tr>
+				    <th width="10"><a href="{{ route('likes',['id' => $photo->id_post]) }}">Like</a></th>
+				    <th><a href="{{ route('loves',['id' => $photo->id_post]) }}">Love</a></th> 
+				    <th><a href="{{ route('laughs',['id' => $photo->id_post]) }}">Laugh</a></th>
+				    <th><a href="{{ route('hates',['id' => $photo->id_post]) }}">Hate</a></th>
+				  </tr>
+				  <tr>
+						<!--Reactions count-->
+					    @foreach($table=array_pop($allReactions) as $reaction)
+					    		<th width="10">{{($reaction)}}</th>   
+					    @endforeach
+					</tr>
+					</table>
+
 				</div>
 			</div>
 		
