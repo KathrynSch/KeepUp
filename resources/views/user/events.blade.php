@@ -46,7 +46,7 @@
 
 						<div class="comments">
 								<div class="name-commment">
-									<span>{{$item->first_name}} {{$item->last_name}}</span> 
+									<span style="font-weight:bold">{{$item->first_name}} {{$item->last_name}}</span> 
 									<span>{{$item->comm}}</span>
 								</div> 
 
