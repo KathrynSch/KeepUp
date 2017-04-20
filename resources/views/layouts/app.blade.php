@@ -70,7 +70,7 @@
                                 <input type="text" class="form-control" name="content" placeholder="Search">
                               </div>
                               <button type="submit" class="btn btn-default">
-                              <i class="glyphicon glyphicon-search"></i>
+                              <a> <img src="{{asset('images/loupe.png')}}" alt="love" height="20"/></a>
                               </button>
                             </form>
 

@@ -171,14 +171,15 @@ font-size: 14px;
 
 .coverpicture{
 	height: auto;
-    width: 100%;
-    margin-left: 283px;
-    
+    width: 100%;    
 }
 
 
 
+
+
 .container1{
+	background-color: white;
 	width: 700px;
 	display: flex;	
 	flex-direction:row;
@@ -191,6 +192,10 @@ font-size: 14px;
 	
 
 }
+.where{
+	font-weight: bold;
+}
+
 
 .container2{
 	width: 700px;
@@ -199,7 +204,11 @@ font-size: 14px;
 }
 
 	
-
+.about{
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
 
 
 .item{
@@ -213,11 +222,13 @@ font-size: 14px;
 .containerprofile{
 	display: flex;
 	flex-direction:row;
+	margin-top: 10px;
 
 }
 
 .info{
 	margin-left: 10px;
+
 }
 
 

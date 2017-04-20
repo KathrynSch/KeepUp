@@ -2,6 +2,7 @@
 
 @section('profileContent')
 
+    <div class="about">
     <div class="container1">
         @if($typeProfile==2)
             <!--Display Button UnFollow -->
@@ -51,7 +52,7 @@
                     <img class="coverpicture" src="{{ asset('images/cp/default.jpg') }}">
                 @endif
             </div>
-        </div>
+        
        
 
         <div class="item2">
@@ -66,6 +67,8 @@
             </footer>
         </div>
     </div>
+
+</div>
 
 
 
