@@ -2,6 +2,7 @@
 
 @section('profileContent')
 
+    <div class="about">
     <div class="container1">
 
         <div class="item">
@@ -48,7 +49,7 @@
                     <img class="coverpicture" src="{{ asset('images/cp/default.jpg') }}">
                 @endif
             </div>
-        </div>
+        
        
 
         <div class="item2">
@@ -58,6 +59,8 @@
            
         </div>
     </div>
+
+</div>
 
 
 

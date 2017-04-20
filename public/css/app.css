@@ -178,7 +178,10 @@ font-size: 14px;
 
 
 
+
+
 .container1{
+	background-color: white;
 	width: 700px;
 	display: flex;	
 	flex-direction:row;
@@ -191,6 +194,10 @@ font-size: 14px;
 	
 
 }
+.where{
+	font-weight: bold;
+}
+
 
 .container2{
 	width: 700px;
