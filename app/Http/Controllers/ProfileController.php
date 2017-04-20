@@ -27,15 +27,15 @@ class ProfileController extends Controller
   	$user = User::find($id);
   	// Edit first name
     if($request->input('first_name')!=null){
-      $user->name=$request->input('first_name');
+      $user->first_name=$request->input('first_name');
     }
   	// Edit last name
     if($request->input('last_name')!=null){
-      $user->name=$request->input('last_name');
+      $user->last_name=$request->input('last_name');
     }
   	// Edit email
     if($request->input('email')!=null){
-      $user->name=$request->input('email');
+      $user->email=$request->input('email');
     } 
 	// Edit status
 		if($request->input('status')!=null){

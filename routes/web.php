@@ -12,6 +12,7 @@
 */
 Auth::routes();
 Route::get('/', 'HomeController@index');	// Route for index page
+Route::post('search/', 'HomeController@search')->name('search'); //Route for search bar
 
 Route::group(['prefix' => 'profile'], function () {	// groupe de routes commencant par "profile"
     Route::get('{id}', 'ProfileController@show')->name('about');//route pour /profile/{id}, on récupère l'id, envoie controlr

@@ -57,12 +57,24 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         </ul>
                         @else
+                         <!-- Si user authentifié -->
+                            <!-- <div class="btn-group" role="group" aria-label="..."> -->
                             
 
                             <ul class="nav navbar-nav .navbar-toggler-left">
 
-                            <!-- Si user authentifié -->
-                            <!-- <div class="btn-group" role="group" aria-label="..."> -->
+                            <!-- Barre de recherche -->
+                            <form class="navbar-form navbar-left" role="search" method="POST" action="{{route('search')}}">
+                            {{ csrf_field() }}
+                              <div class="form-group">
+                                <input type="text" class="form-control" name="content" placeholder="Search">
+                              </div>
+                              <button type="submit" class="btn btn-default">
+                              <i class="glyphicon glyphicon-search"></i>
+                              </button>
+                            </form>
+
+                           
                             <!-- BOUTON ACCUEIL -->
                             <li><a href="{{ route('login') }}">ACCUEIL</a></li>
                            <!--  <button type="button" class="btn btn-default">ACCUEIL</button> -->
