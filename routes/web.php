@@ -33,6 +33,11 @@ Route::group(['prefix' => 'profile'], function () {	// groupe de routes commenca
     Route::get('loves/{id}', 'PostController@loves')->name('loves');
     Route::get('laughs/{id}', 'PostController@laughs')->name('laughs');
     Route::get('hates/{id}', 'PostController@hates')->name('hates');
+    Route::get('deletePhoto/{id}','PostController@deletePhoto')->name('deletePhoto');
+    Route::get('deleteVideo/{id}','PostController@deleteVideo')->name('deleteVideo');
+    Route::get('deleteEvent/{id}','PostController@deleteEvent')->name('deleteEvent');
+
+
 
 
 

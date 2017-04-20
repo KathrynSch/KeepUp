@@ -17,8 +17,13 @@
 
 			<div class="dessous">
 
-
 				<div class="desc">
+				<div class="option">
+					<div class="supp">
+						<a href="{{ route('deleteVideo',['id' => $video->id_post]) }}">Delete</a>
+					</div>
+				</div>
+
 					<h4>When: {{$video->date}}</h4>
 					<h4>Where: {{$video->lieu}}</h4>
 					<h4>What: {{$video->description}}</h4>

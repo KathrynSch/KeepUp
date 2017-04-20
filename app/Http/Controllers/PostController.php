@@ -16,6 +16,50 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    function deletePhoto($id)
+    {
+        $photo=DB::table('photos')
+            ->select('photos.*')
+            ->where('photos.id_post',$id)
+            ->delete();
+
+        $post=DB::table('posts')
+            ->select('posts.*')
+            ->where('posts.id',$id)
+            ->delete();
+    return redirect()->back();
+    }
+
+    function deleteVideo($id)
+    {
+        $video=DB::table('videos')
+            ->select('videos.*')
+            ->where('videos.id_post',$id)
+            ->delete();
+
+
+        $post=DB::table('posts')
+            ->select('posts.*')
+            ->where('posts.id',$id)
+            ->delete();
+    return redirect()->back();
+    }
+
+    function deleteEvent($id)
+    {
+        $event=DB::table('events')
+            ->select('events.*')
+            ->where('events.id_post',$id)
+            ->delete();
+
+        $post=DB::table('posts')
+            ->select('posts.*')
+            ->where('posts.id',$id)
+            ->delete();
+    return redirect()->back();
+    }
+
+
 
     //ajouter une photo
     function addPhoto($id)

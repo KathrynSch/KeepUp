@@ -8,6 +8,13 @@
 	<div class="dessous">
 
 			<div class="desc-event">
+			
+				<div class="option">
+					<div class="supp">
+						<a href="{{ route('deleteEvent',['id' => $event->id_post]) }}">Delete</a>
+					</div>
+				</div>
+
 				<h2>{{$event->name}}</h2>
 				<h3>When: {{$event->date}}</h3>
 				<h3>Where: {{$event->lieu}}</h3>

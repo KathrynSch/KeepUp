@@ -8,28 +8,31 @@
 			
 	@foreach($photos as $photo)
 
-	
-
 					<div class="pic">
 						<img  class ="image" src="{{asset('images/photo/'.$photo->name) }}">
-
 					</div>
 
+				
 			<div class="dessous">
 
+			
+
 					<div class="desc">
+						<div class="option">
+							<div class="supp">
+								<a href="{{ route('deletePhoto',['id' => $photo->id_post]) }}">Delete</a>
+							</div>
+						</div>
+					
 						<h4>When: {{$photo->date}}</h4>
 						<h4>Where: {{$photo->lieu}}</h4>
 						<h4>What: {{$photo->description}}</h4>
 					</div>
 				
 				<!--reactions-->
-
-				
 					<div class="reac">
-				
-							
-							<table style="width:60%" class="likes" >
+			
+						<table style="width:60%" class="likes" >
 						  <tr>
 
 						    <th style="text-align: center"> <a href="{{ route('likes',['id' => $photo->id_post]) }}"> <img src="{{asset('images/like.png')}}" alt="love" height="30"/> </a></th> 
@@ -44,13 +47,12 @@
 							    		<th style="text-align: center">{{($reaction)}}</th>   
 							    @endforeach
 							</tr>
-							</table>
+						</table>
 
 					</div>
 		
 					<!--comments-->
-					
-					
+				
 						@foreach($comments=array_pop($allComments) as $item)
 							<div class="comments">
 								<div class="name-commment">
