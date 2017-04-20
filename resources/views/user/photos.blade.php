@@ -29,17 +29,19 @@
 					<div class="reac">
 				
 							
-							<table style="width:15%">
+							<table style="width:60%" class="likes" >
 						  <tr>
-						    <th width="10"><a href="{{ route('likes',['id' => $photo->id_post]) }}">Like</a></th>
-						    <th><a href="{{ route('loves',['id' => $photo->id_post]) }}">Love</a></th> 
-						    <th><a href="{{ route('laughs',['id' => $photo->id_post]) }}">Laugh</a></th>
-						    <th><a href="{{ route('hates',['id' => $photo->id_post]) }}">Hate</a></th>
+
+						    <th style="text-align: center"> <a href="{{ route('likes',['id' => $photo->id_post]) }}"> <img src="{{asset('images/like.png')}}" alt="love" height="30"/> </a></th> 
+
+						    <th style="text-align: center"><a href="{{ route('loves',['id' => $photo->id_post]) }}"> <img src="{{asset('images/love.png')}}" alt="love" height="30"/></a></th> 
+						    <th style="text-align: center"><a href="{{ route('laughs',['id' => $photo->id_post]) }}"><img src="{{asset('images/laugh.png')}}" alt="love" height="30"/></a></th>
+						    <th style="text-align: center"><a href="{{ route('hates',['id' => $photo->id_post]) }}"><img src="{{asset('images/angry.png')}}" alt="love" height="30"/></a></th>
 						  </tr>
 						  <tr>
 								<!--Reactions count-->
 							    @foreach($table=array_pop($allReactions) as $reaction)
-							    		<th width="10">{{($reaction)}}</th>   
+							    		<th style="text-align: center">{{($reaction)}}</th>   
 							    @endforeach
 							</tr>
 							</table>
@@ -80,6 +82,7 @@
 						    </div><!-- /input-group -->
 						</form>
 						</div><!-- /.col-lg-6 -->
+
 					</div>
 			</div>
 			

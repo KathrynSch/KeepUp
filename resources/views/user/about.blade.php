@@ -6,11 +6,21 @@
 
         <div class="item">
         <!--Display Name -->
-        	<h1>{{$user->first_name}} {{$user->last_name}}</h1>
+        <div class="name">
+        	<h1>{{$user->first_name}} {{$user->last_name}}</h1> 
+        </div>
         <!--Display Email -->
         	<h3>{{$user->email}}</h3>
         <!--Display Status -->
         	<h3>{{$user->status}}</h3>
+
+                <div class="editpro">
+                @if(Auth::id() == $user->id)
+                    <a class="edit" href="{{route('edit',['id' => $user->id])}}">  Edit profile</a> 
+                    
+                   
+                @endif
+               </div>
         </div>
 
         <div class="item">
@@ -45,12 +55,7 @@
             <!-- if user account profile-->
 
 
-            <footer>
-                @if(Auth::id() == $user->id)
-                    <a class="edit" href="{{route('edit',['id' => $user->id])}}">  Edit profile</a>
-                @endif
-               
-            </footer>
+           
         </div>
     </div>
 
